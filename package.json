@@ -1,0 +1,19 @@
+{
+  "name": "google-docs-console-download",
+  "version": "1.0.0",
+  "description": "Downloads HTML from Google Docs, authenticating via console",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huffpostdata/google-docs-console-download.git"
+  },
+  "author": "Adam Hooper <adam@adamhooper.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/huffpostdata/google-docs-console-download/issues"
+  },
+  "homepage": "https://github.com/huffpostdata/google-docs-console-download#readme",
+  "dependencies": {
+    "googleapis": "^14.2.0"
+  }
+}
