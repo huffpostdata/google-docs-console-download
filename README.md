@@ -7,14 +7,20 @@ Install the library like this:
 
     npm install --save-dev google-docs-console-download
 
-Then write a wrapper function like this to encapsulate your auth:
+Then use it to download HTML:
 
-    const auth_config = require('./config/google-docs-console-download-auth')
-    const gdcd = require('google-docs-console-download')(auth_config)
-
-    function downloadGoogleDocAsHtml(docId, callback) {
-      gdcd.download(docId, callback)
-    }
+    const DocId = '1qLoJYmUEJvpQdP4Xplp6I5JBsMpRY9RZTnak2gPhiEQ'
+    const gdcd = require('google-docs-console-download')(null)
+    gdcd.download(DocId, (err, html) => {
+      if (err) {
+        // Failure: unauthenticated, unauthorized, network failure, missing file
+        // The error message will describe what's up
+        console.error(err)
+      } else {
+        // Do something with the HTML. Here, we write it to the console
+        console.log(html)
+      }
+    })
 
 You probably want to use this library interactively on a console, which is why
 we suggest `--save-dev` instead of `--save`. If you want to download from
@@ -23,9 +29,19 @@ library to rely on.
 
 ## Configuring Google Auth
 
-You must configure this library using Google OAuth credentials. In our example
-we read them from `./config/google-docs-console-download-auth.json`. Here's how
-to generate that file:
+That `(null)` at the end is an option. And It's Complicated.
+
+Google uses OAuth 2.0 for authentication. That means it asks what app is
+downloading. When you pass `(null)`, you're telling Google you're using an app
+called "google-docs-console-download", administered by its project's
+maintainers.
+
+That's usually what you want. So usually, add `(null)` after the `require()`
+call.
+
+But you may want to tell Google you're using a different project. (The most
+likely reason: you don't trust us to maintain this project.) In that case, you
+can pass some different JSON to the file. Here's how to get it:
 
 1. Browse to https://console.developers.google.com/apis/dashboard and
    "Create Project". We'll use the example name "my-google-docs-project" here.
@@ -45,8 +61,10 @@ to generate that file:
 7. Enable the API: go to https://console.developers.google.com/apis/dashboard,
    click "Enable API", then "Drive API" and finally "Enable".
 
-Our example.js uses our example app. It may work for you, but we can't guarantee
-it will continue to work unless you create your own project.
+Then instead of `(null)`, pass the JSON you downloaded -- e.g.:
+
+    const auth_config = require('./config/google-docs-console-download-auth')
+    const gdcd = require('google-docs-console-download')(auth_config)
 
 ## Running
 

@@ -4,6 +4,8 @@ const google = require('googleapis')
 const readline = require('readline')
 
 function init(authJson) {
+  if (authJson === null) authJson = require('./google-docs-console-download-auth')
+
   if (
       !authJson.hasOwnProperty('installed')
       || !authJson.installed.hasOwnProperty('client_id')
