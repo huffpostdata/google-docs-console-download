@@ -1,6 +1,6 @@
 {
   "name": "google-docs-console-download",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Downloads HTML from Google Docs, authenticating via console",
   "main": "index.js",
   "repository": {
