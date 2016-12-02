@@ -43,6 +43,7 @@ function init(authJson) {
         const access_token = token.access_token
         process.stderr.write(`For the next few hours you can skip this step by prepending this text to the command: GOOGLE_AUTH_TOKEN='${access_token}'\n`)
         oauth2Client.setCredentials({ access_token: access_token })
+        loggedIn = true
         return callback()
       })
     })
