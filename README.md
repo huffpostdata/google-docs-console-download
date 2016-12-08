@@ -1,17 +1,18 @@
-Downloads HTML from Google Docs, authorizing through an interactive console
+Downloads documents from Google Drive, authorizing through an interactive console
 session.
 
 # Usage
 
 Install the library like this:
 
-    npm install --save-dev google-docs-console-download
+    npm install --save-dev google-drive-console-download
 
 Then use it to download HTML:
 
     const DocId = '1qLoJYmUEJvpQdP4Xplp6I5JBsMpRY9RZTnak2gPhiEQ'
-    const gdcd = require('google-docs-console-download')(null)
-    gdcd.download(DocId, (err, html) => {
+    const MimeType = 'text/html'
+    const gdcd = require('google-drive-console-download')(null)
+    gdcd.download(DocId, MimeType, (err, html) => {
       if (err) {
         // Failure: unauthenticated, unauthorized, network failure, missing file
         // The error message will describe what's up
@@ -33,7 +34,7 @@ That `(null)` at the end is an option. And It's Complicated.
 
 Google uses OAuth 2.0 for authentication. That means it asks what app is
 downloading. When you pass `(null)`, you're telling Google you're using an app
-called "google-docs-console-download", administered by its project's
+called "google-drive-console-download", administered by its project's
 maintainers.
 
 That's usually what you want. So usually, add `(null)` after the `require()`
@@ -50,10 +51,10 @@ can pass some different JSON to the file. Here's how to get it:
 3. "Configure consent screen". You only have to fill in "Product name"; write
    anything (e.g., "my-google-docs-project"). Click "Save".
 4. Back at "Create client ID", choose Application type "Other" and enter
-   "google-docs-console-download". Click "Save".
+   "google-drive-console-download". Click "Save".
 5. Close the popup. Find and click the "Download JSON" button on the
-   "google-docs-console-download" line.
-6. Save the resulting JSON as "config/google-docs-console-download-auth.json".
+   "google-drive-console-download" line.
+6. Save the resulting JSON as "config/google-drive-console-download-auth.json".
    *Do* save this authentication data in your project's code repository, and
    *do* publish it if you publish your project's source code. It's
    [not secret](https://developers.google.com/identity/protocols/OAuth2InstalledApp)
@@ -63,8 +64,8 @@ can pass some different JSON to the file. Here's how to get it:
 
 Then instead of `(null)`, pass the JSON you downloaded -- e.g.:
 
-    const auth_config = require('./config/google-docs-console-download-auth')
-    const gdcd = require('google-docs-console-download')(auth_config)
+    const auth_config = require('./config/google-drive-console-download-auth')
+    const gdcd = require('google-drive-console-download')(auth_config)
 
 ## Running
 

@@ -4,7 +4,7 @@ const google = require('googleapis')
 const readline = require('readline')
 
 function init(authJson) {
-  if (authJson === null) authJson = require('./google-docs-console-download-auth')
+  if (authJson === null) authJson = require('./google-drive-console-download-auth')
 
   if (
       !authJson.hasOwnProperty('installed')
@@ -49,11 +49,11 @@ function init(authJson) {
     })
   }
 
-  function download(docId, callback) {
+  function download(docId, mimeType, callback) {
     withLogin(err => {
       if (err) return callback(err)
       const drive = google.drive({ version: 'v3', auth: oauth2Client })
-      drive.files.export({ fileId: docId, mimeType: 'text/html' }, callback)
+      drive.files.export({ fileId: docId, mimeType: mimeType }, callback)
     })
   }
 

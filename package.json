@@ -1,18 +1,18 @@
 {
-  "name": "google-docs-console-download",
-  "version": "1.1.1",
-  "description": "Downloads HTML from Google Docs, authenticating via console",
+  "name": "google-drive-console-download",
+  "version": "1.2.0",
+  "description": "Downloads documents from Google Drive, authenticating via console",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/huffpostdata/google-docs-console-download.git"
+    "url": "git+https://github.com/huffpostdata/google-drive-console-download.git"
   },
   "author": "Adam Hooper <adam@adamhooper.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/huffpostdata/google-docs-console-download/issues"
+    "url": "https://github.com/huffpostdata/google-drive-console-download/issues"
   },
-  "homepage": "https://github.com/huffpostdata/google-docs-console-download#readme",
+  "homepage": "https://github.com/huffpostdata/google-drive-console-download#readme",
   "dependencies": {
     "googleapis": "^14.2.0"
   }
